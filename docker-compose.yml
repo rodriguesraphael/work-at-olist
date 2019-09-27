@@ -1,23 +1,23 @@
-version: '3'
-
-services:
-  db:
-    image: postgres
-  web:
-    build: .
-    environment:
-      - BILLCALLS_DATABASES__default__NAME=postgres
-      - BILLCALLS_DATABASES__default__ENGINE=django.db.backends.postgresql_psycopg2
-      - BILLCALLS_DATABASES__default__USER=postgres
-      - BILLCALLS_DATABASES__default__PASSWORD=postgres
-      - BILLCALLS_DATABASES__default__HOST=db
-      - BILLCALLS_DATABASES__default__PORT=5432
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    links:
-    - db
+db:
+  image: postgres
+web:
+  build: .
+  environment:
+    - BILLCALLS_DATABASES__default__NAME=postgres
+    - BILLCALLS_DATABASES__default__ENGINE=django.db.backends.postgresql_psycopg2
+    - BILLCALLS_DATABASES__default__USER=postgres
+    - BILLCALLS_DATABASES__default__PASSWORD=postgres
+    - BILLCALLS_DATABASES__default__HOST=db
+    - BILLCALLS_DATABASES__default__PORT=5432
+    - BILLCALLS_ENV=development
+    - BILLCALLS_SECRET_KEY="CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+    - BILLCALLS_DEBUG=true
+    - BILLCALLS_ALLOWED_HOSTS=*
+  command: python manage.py migrate
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+  - db
