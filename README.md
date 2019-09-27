@@ -2,6 +2,8 @@
 Description
 ===========
 Proposed solution to the [Olist challenge](https://github.com/olist/work-at-olist).
+The service is published on Heroku: https://billcalls.herokuapp.com
+[Documentation](https://billcalls.herokuapp.com/doc)
 
 Instalation
 ===========
@@ -50,7 +52,6 @@ Run Tests
 Deploy in Docker
 ================
 ```bash
-docker-compose run web ./manage.py migrate
 docker-compose up
 ```
 *To execute commands in the application do as in the example below*
@@ -122,8 +123,8 @@ Working Enviroment Used
 
 |||
 | --- | --- |
-|Python 3.7
-|Django 2.2.5
-|djangorestframework 3.10.3
-|coreapi 2.3.3
-|dynaconf
+|Python 3.7|
+|Django 2.2.5|
+|djangorestframework 3.10.3|
+|coreapi 2.3.3|
+|dynaconf|
